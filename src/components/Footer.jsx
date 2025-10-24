@@ -82,7 +82,7 @@
             </div>
 
             <div className='bg-gray-700'>
-                <Container>
+                
                     <div className='grid grid-cols-auto-fit-md py-4 gap-10'>
                         {
                             footerLists.map((item,index)=>{
@@ -103,10 +103,10 @@
                             })
                         }
                     </div>
-                </Container>
+                
             </div>
             <div className=" bg-gray-700 text-gray-200">
-             <Container maxWidth='xl'>
+            
              <span className='bg-gray-100 w-full block h-[1px] opacity-10'></span>
                  <div className='flex justify-between py-4'>
                      
@@ -117,7 +117,7 @@
                     <i></i>
                 </div>
                  </div>
-             </Container>
+            
             </div>
         </footer>
      )
