@@ -110,7 +110,7 @@
              <span className='bg-gray-100 w-full block h-[1px] opacity-10'></span>
                  <div className='flex justify-between py-4'>
                      
-                <p>@2024 Pison Itech LTD</p>
+                <p>@2025 Pison Itech LTD</p>
                 <div className="flex gap-2">
                     <i></i>
                     <i></i>
