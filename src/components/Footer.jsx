@@ -15,7 +15,7 @@
          ]
      },
      {
-         title: 'About trovemart',
+         title: 'About Pison Itech',
          links: [{
                  txt: 'About us',
                  link: '#'
@@ -46,7 +46,7 @@
                  link: '#'
              },
              {
-                 txt: 'How to shop on trovemart',
+                 txt: 'How to shop on Pison Itech',
                  link: '#'
              },
              {
