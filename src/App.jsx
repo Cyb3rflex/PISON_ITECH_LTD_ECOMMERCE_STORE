@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ShoppingCart, Heart, User, Search, Menu, X } from 'lucide-react'
+import { ShoppingCart, Heart, User, Search, Menu, X, LogIn } from 'lucide-react'
 
 const PRODUCTS = [
   { id: 'p1', title: 'Learn React (e-book)', img: 'https://placehold.co/300x200?text=React+Ebook', category: 'E-books & Printed Books', format: 'ebook', price: 9.99, brand: 'CodePress', rating: 4.6, stock: 999 },
@@ -15,6 +15,8 @@ export default function App() {
   const [query, setQuery] = useState('')
   const [cart, setCart] = useState({})
   const [showCart, setShowCart] = useState(false)
+  const [authMode, setAuthMode] = useState('login') // 'login' | 'signup'
+  const [showAuth, setShowAuth] = useState(false)
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -47,7 +49,7 @@ export default function App() {
               <input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search..." className="pl-8 pr-3 py-2 rounded-md text-gray-800 w-40 sm:w-56 md:w-64" />
             </div>
             <ShoppingCart className="cursor-pointer hover:text-yellow-200" onClick={() => setShowCart(true)} />
-            <User className="cursor-pointer hover:text-yellow-200" />
+            <User className="cursor-pointer hover:text-yellow-200" onClick={() => setShowAuth(true)} />
             <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
               {menuOpen ? <X /> : <Menu />}
             </button>
@@ -84,6 +86,7 @@ export default function App() {
         ))}
       </main>
 
+      {/* CART MODAL */}
       <AnimatePresence>
         {showCart && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
@@ -127,10 +130,45 @@ export default function App() {
         )}
       </AnimatePresence>
 
+      {/* AUTH MODAL */}
+      <AnimatePresence>
+        {showAuth && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+            <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }} className="bg-white rounded-xl shadow-lg w-full max-w-md p-6">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="font-bold text-xl">{authMode === 'login' ? 'Login' : 'Sign Up'}</h2>
+                <button onClick={() => setShowAuth(false)}><X /></button>
+              </div>
+              <form className="space-y-3">
+                {authMode === 'signup' && (
+                  <input type="text" placeholder="Full Name" className="w-full border rounded p-2" />
+                )}
+                <input type="email" placeholder="Email Address" className="w-full border rounded p-2" />
+                <input type="password" placeholder="Password" className="w-full border rounded p-2" />
+                {authMode === 'signup' && (
+                  <input type="text" placeholder="Phone Number" className="w-full border rounded p-2" />
+                )}
+                <button type="button" className="w-full bg-indigo-600 text-white rounded py-2 hover:bg-indigo-700 flex items-center justify-center gap-2">
+                  <LogIn size={18} /> {authMode === 'login' ? 'Login' : 'Sign Up'}
+                </button>
+              </form>
+              <div className="text-center mt-4 text-sm">
+                {authMode === 'login' ? (
+                  <span>Don't have an account? <button className="text-indigo-600" onClick={() => setAuthMode('signup')}>Sign Up</button></span>
+                ) : (
+                  <span>Already have an account? <button className="text-indigo-600" onClick={() => setAuthMode('login')}>Login</button></span>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <footer className="mt-10 text-center text-sm py-6 bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
-        © 2025 PinsonStore | Frontend Preview
+        © 2025 PinStore | Frontend Preview
       </footer>
     </div>
   )
-}
+   }
+   
 
