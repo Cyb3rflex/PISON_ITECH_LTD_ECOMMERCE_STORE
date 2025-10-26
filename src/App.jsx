@@ -34,7 +34,7 @@ export default function App() {
     <div className="min-h-screen bg-gradient-to-b from-purple-50 to-indigo-100 text-gray-800">
       <header className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-4 sticky top-0 z-50 shadow-lg">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="text-2xl font-bold cursor-pointer">PinsonStore</div>
+          <div className="text-2xl font-bold cursor-pointer">PinStore</div>
           <div className="hidden md:flex gap-6 items-center">
             <button className="hover:text-yellow-200">Home</button>
             <button className="hover:text-yellow-200">Catalog</button>
